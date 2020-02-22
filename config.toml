@@ -8,7 +8,6 @@ summaryLength = 25
 [Menus]
   main = [
       {Name = "Blog", URL = "/blog"},
-      {Name = "Github", URL = "https://github.com/username/"},
       {Name = "LinkedIn", URL = "https://www.linkedin.com/in/username/"}
   ]
 
