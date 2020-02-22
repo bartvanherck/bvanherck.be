@@ -1,0 +1,27 @@
+baseURL = "http://127.0.0.1:1313/"
+languageCode = "en-us"
+title = "Testing is Fun"
+theme = "mediumish-gohugo-theme"
+author = "Bart"
+summaryLength = 25
+
+[Menus]
+  main = [
+      {Name = "Blog", URL = "/blog"},
+      {Name = "Github", URL = "https://github.com/username/"},
+      {Name = "LinkedIn", URL = "https://www.linkedin.com/in/username/"}
+  ]
+
+[params]
+  description = "Mijn custom description"
+  include_toc = true
+  subtitleLength = 25
+  logo = "/images/logo.png"
+
+[params.social]
+  twitter = "vherckb"
+
+[params.author]
+  name = "Bart"
+  thumbnail = "/images/author.jpg"
+  description = "Software Tester"
