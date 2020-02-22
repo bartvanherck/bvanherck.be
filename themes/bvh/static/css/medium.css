@@ -117,6 +117,10 @@ section.recent-posts {
     overflow: hidden;
 }
 
+.first-post .maxthumb {
+    max-height: 600px;
+    overflow: hidden;
+}
 .listfeaturedtag .card,
 .card-footer {
     border: 0;
@@ -144,7 +148,8 @@ section.recent-posts {
 }
 
 .listfeaturedtag h4.card-text,
-.listrecent h4.card-text {
+.listrecent h4.card-text,
+.first-post h4.card-text {
     color: rgba(0, 0, 0, .44);
     font-size: 0.95rem;
     line-height: 1.6;
@@ -850,4 +855,9 @@ iframe {
     line-height: 1.5;
     padding-left: 5px;
     padding-right: 5px;
+}
+
+.card-first-row {
+    padding-left: 0px;
+    padding-right: 0px;
 }

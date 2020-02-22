@@ -8,12 +8,14 @@
         <!-- Posts Index
         ================================================== -->
         <section class="recent-posts">            
-            <div class="section-title">                
-                <h2><span>All Posts</span></h2>                
-            </div>            
+            <div class="first-post">
+                {{range first 1 .Site.RegularPages }}
+                {{- partial "box.html" . -}}
+                {{end}}
+            </div>         
             <div class="row listrecent">
                 {{ $post_paginator := .Paginate (.Site.RegularPages) .Site.Params.pagination }}
-                {{ range $post_paginator.Pages }}
+                {{ range  after 1 $post_paginator.Pages }}
                     {{- partial "list-partials/postbox.html" . -}}
                 {{end}}
             </div>
