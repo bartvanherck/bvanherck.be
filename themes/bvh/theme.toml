@@ -1,0 +1,12 @@
+name = "bvh"
+license = "MIT"
+licenselink = ""
+description = "My theme"
+homepage = ""
+tags = ["Blog", "Responsive", "Personal", "Minimal", "Clean", "Disqus", "Google Analytics"]
+features = []
+min_version = "0.41"
+
+[author]
+  name = "bvh"
+  homepage = ""
