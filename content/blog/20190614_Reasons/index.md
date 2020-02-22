@@ -4,6 +4,7 @@ date: 2019-06-14T18:00:00+01:00
 publishdate: 2019-06-14T18:00:00+01:00
 tags: ["testing"]
 comments: false
+summary: Writing unit tests for API's is a waste of time. While developing an API it looks so. Today I need to rewrite some calls and all my tests fail. I need to update all the unit tests. If I did not have to write tests, my code was already finished. But that is a mistake. 
 ---
 
 Writing unit tests for API's is a waste of time. A waste of time? Yes, I am developing an API. The API is not stable yet. Today I need to rewrite some calls and now all my tests fail. I need to update all those unit tests. If I did not have to write tests, my code was already finished.

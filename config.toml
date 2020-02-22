@@ -23,9 +23,8 @@ summaryLength = 50
 
 [params.social]
   twitter = "vherckb"
-  linkedin = "abc"
-  github = "ikke"
-
+  linkedin = "bart-vanherck"
+  github = "bartvanherck"
 
 [params.author]
   name = "Bart"

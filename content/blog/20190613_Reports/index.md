@@ -4,6 +4,7 @@ date: 2019-06-13T18:00:00+01:00
 publishdate: 2019-06-13T18:00:00+01:00
 tags: ["testing"]
 comments: false
+summary: Testing should deliver usefull information about our products we test. But the usefull information is placed in boring documents who are not very clear to the reader. So The message that we want to tell is not remembered. Can this be different? 
 ---
 
 At the testnet conference, I attended to a talk of Gerlof Hoekstra. According to him our test documentation is not readed by anyone, or maybe even misinterpreted. This because they only contains figures and no real story. It looks that he has remembered the previous talk, but he has a point. Should a Tester give an advice to our developers to release or should the content of a report be so clear that everyone can decide for himself if the product can be released? 

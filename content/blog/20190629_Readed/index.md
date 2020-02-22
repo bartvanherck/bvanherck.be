@@ -4,6 +4,7 @@ date: 2019-06-29T18:00:00+01:00
 publishdate: 2019-06-29T18:00:00+01:00
 tags: ["testing", "git"]
 comments: false
+summary: I read a lot. This post contains some links to documents that every tester should read.
 ---
 
 Some documents that are really usefull to read:

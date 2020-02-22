@@ -3,6 +3,7 @@ title: "Swiping on a touch screen"
 date: 2019-06-12T18:00:00+01:00
 publishdate: 2019-06-12T18:00:00+01:00
 tags: ["testing"]
+summary: We had already a few months a problem on the machines touchscreen that our interface behaved differently with a finger swipe as with a mouse drag and drop.
 comments: false
 ---
 We had already a few months a problem on the machines touchscreen that our interface behaved differently with a finger swipe as with a mouse drag and drop. The problem was that swiping from left to right was navigating to the previous page. And swiping the other way around was taking us to the next page.
