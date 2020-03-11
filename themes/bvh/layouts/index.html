@@ -8,20 +8,25 @@
         <!-- Posts Index
         ================================================== -->
         <section class="recent-posts">
-            
             {{ $post_paginator := .Paginate (.Site.RegularPages) .Site.Params.pagination }}  
             {{ if eq $post_paginator.PageNumber 1 }}
                 <div class="first-post">
                     {{range first 1 .Site.RegularPages }}
                     {{- partial "box.html" . -}}
                     {{end}}
+                </div>
+                <div class="row listrecent">
+                    {{ range after 1 $post_paginator.Pages }}
+                        {{- partial "list-partials/postboxFirstPage.html" . -}}
+                    {{end}}
+                </div>
+            {{ else }}
+                <div class="row listrecent">
+                    {{ range $post_paginator.Pages }}
+                        {{- partial "list-partials/postbox.html" . -}}
+                    {{end}}
                 </div> 
             {{ end }}
-            <div class="row listrecent">
-                {{ range $post_paginator.Pages }}
-                    {{- partial "list-partials/postbox.html" . -}}
-                {{end}}
-            </div>
         </section>
         {{- partial "list-partials/pagination.html" $post_paginator -}}
     </div>

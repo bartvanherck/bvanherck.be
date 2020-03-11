@@ -15,7 +15,7 @@ summaryLength = 50
   include_toc = true
   subtitleLength = 25
   logo = "/images/logo.png"
-  pagination = 9
+  pagination = 10
 
 [params.meta]
   description = "mijn site"
