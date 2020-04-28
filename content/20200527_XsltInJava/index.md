@@ -6,14 +6,13 @@ tags: ["testing", "java"]
 summary: How should we test xslt transformations in java? Is the solution that we found on the most examples located on the internet suitable for us? In our case we still had problems that our tests where failing. The solution was correct. This means we need another approach.
 comments: false
 ---
-### The problem
-I am on a project that changes input data into output data. This means we need to transform data. Our team has choosen to handle the
-transformation with an xslt transformation. The input data is xml and the output data is xml of another format, so that seems a logical
-choice.
+### I have a problem
+Today I want to test an application that transforms some data from an xml file to another xml file. The application that our team needs to test is a soa application. In this application there is an xslt located that does the transformation. This means that I need to test the xslt. 
 
-We decided to make test the transformation on its own in a separate java project. At first I did not know where to look how to test this transformation. I decided to have some input files, do the transformation and look then afterwards if the transformation matches the output. The first time I could just generate it with the test environment. Then I verified the results and the next run the stored results of the first run could be saved.
+I test the xslt in a separate test project written in java. I write an application that takes an input file. The application transforms the data to the resulting format. At last, the program saves the result in the output file.
 
-So I needed code to have do the transformation. I entered some keywords in DuckDuck and some links to a solution that looks like this showed up.
+I need some java code that performs the transformation. The variable part is the xslt file. There are plenty websites that can help me. I looked it up in my search engine and got a lot of results. The following code showed up.
+
 {{< highlight java >}}
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -48,9 +47,24 @@ public void run() throws Exception {
 }
 
 {{< /highlight >}}
-But there was a problem. The output was not correct. Maybe because of all the namespaces? 
+There is a problem. The output is not correct. The xslt transformation does not fill in the values. What is happening?
 
-### Is the xslt wrong or our code ?
+The input data that I use is not that complex:
+{{< highlight xml >}}
+<?xml version="1.0" encoding="UTF-8" ?>
+<getPersonResponse xmlns:mes="http://xmlns.cm.be/services/disabilitybenefits/business/managememberservice/v1/messages" xmlns="http://xmlns.cm.be/services/disabilitybenefits/business/managememberservice/v1/messages">
+ <common:responseData xmlns:common="http://xmlns.cm.be/common">
+ </common:responseData>
+</getPersonResponse>
+{{< /highlight >}}
+
+And the transformation is like this.
+{{< highlight xml >}}
+<xslt>
+{{< /highlight >}}
+
+
+### Is the xslt wrong or the java code?
 Was the xslt wrong? Was my code wrong? The code seems to be correct. I tested it with other xslt files and other input files. They seem to work correctly. But with our input file it did not work. After searching a lot, I asked it to the developers in our team. One developer had time and could also looking at the problem. After a while we discovered that the xslt seems to be correct. I created a python program that did the trick. It generated correct code.
 
 {{< highlight python >}}
