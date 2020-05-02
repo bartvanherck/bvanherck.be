@@ -27,60 +27,96 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.File;
 import org.w3c.dom.Document;
 
-public void run() throws Exception {
-    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+public class Transformation {
+
+    public void run() throws Exception {
+        File xml = new File("./input.xml");
+        File xsl = new File("./input.xsl");
+        
+        Document document;
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        DocumentBuilder builder = factory.newDocumentBuilder();
+        document = builder.parse(xml);
+        // Use a Transformer for output
+        TransformerFactory transformerFactory = TransformerFactory.newInstance();
+        StreamSource style = new StreamSource(xsl);
  
-    File xml = new File("./input.xml");
-    File xsl = new File("./input.xsl");
-    DocumentBuilder builder = factory.newDocumentBuilder();
-    document = builder.parse(xml);
-    // Use a Transformer for output
-    TransformerFactory transformerFactory = TransformerFactory.newInstance();
-    StreamSource style = new StreamSource(xsl);
- 
-    Transformer transformer = transformerFactory.newTransformer(style);
-    transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-    DOMSource source = new DOMSource(document);
-    StreamResult result = new StreamResult(System.out);
+        Transformer transformer = transformerFactory.newTransformer(style);
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        DOMSource source = new DOMSource(document);
+        StreamResult result = new StreamResult(System.out);
        
-    transformer.transform(source, result);
+        transformer.transform(source, result);
+    }
 }
 
 {{< /highlight >}}
 There is a problem. The output is not correct. The xslt transformation does not fill in the values. What is happening?
 
+{{< highlight xml >}}
+<?xml version="1.0" encoding="UTF-8"?>
+<person:createResponse xmlns:person="services.person">
+    <person:firstName/>
+    <person:familyName/>
+</person:createResponse>
+{{< /highlight >}}
+
 The input data that I use is not that complex:
 {{< highlight xml >}}
 <?xml version="1.0" encoding="UTF-8" ?>
-<getPersonResponse xmlns:mes="http://xmlns.cm.be/services/disabilitybenefits/business/managememberservice/v1/messages" xmlns="http://xmlns.cm.be/services/disabilitybenefits/business/managememberservice/v1/messages">
- <common:responseData xmlns:common="http://xmlns.cm.be/common">
- </common:responseData>
+<getPersonResponse xmlns:mes="messages" xmlns="messages">
+ <mes:person>
+    <tns:personDetails xmlns:tns="person">
+       <tns:surname>GHOST</tns:surname>
+       <tns:nickName>BABY</tns:nickName>
+    </tns:personDetails>
+ </mes:person>
 </getPersonResponse>
 {{< /highlight >}}
 
 And the transformation is like this.
 {{< highlight xml >}}
-<xslt>
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsl:stylesheet version="1.0"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:tns="services.tns"
+                xmlns:person="services.person"
+                xmlns:mes="messages"
+                xmlns:per="person"
+                exclude-result-prefixes="xsl tns mes per mind"
+                >
+  <xsl:template match="/">
+    <person:createResponse>
+      <person:firstName>
+        <xsl:value-of select="/mes:getPersonResponse/mes:person/per:personDetails/per:nickName"/>
+      </person:firstName>
+      <person:familyName>
+        <xsl:value-of select="/mes:getPersonResponse/mes:person/per:personDetails/per:surname"/>
+      </person:familyName>
+    </person:createResponse>
+  </xsl:template>
+</xsl:stylesheet>
 {{< /highlight >}}
 
 
 ### Is the xslt wrong or the java code?
-Was the xslt wrong? Was my code wrong? The code seems to be correct. I tested it with other xslt files and other input files. They seem to work correctly. But with our input file it did not work. After searching a lot, I asked it to the developers in our team. One developer had time and could also looking at the problem. After a while we discovered that the xslt seems to be correct. I created a python program that did the trick. It generated correct code.
+Is the xslt wrong? Is the java code wrong? The java code seems to be correct at first sight. I did test it with another xslt file and orhter input files. That works like it supposed to work. After searching a lot I told the developers of the team my problem. One of them helped me with that problem. He did also not find a solution in 5 minutes.
+
+I did want to know where the problem is. Is it the code or the xslt. In the program that we are making, the xslt works. But why did it not work in my test environment? I created a python program to do the same xslt transformation.
 
 {{< highlight python >}}
 import lxml.etree as ET
 
-dom = ET.parse("GetPersonResponse.xml")
+dom = ET.parse("input.xml")
 xslt = ET.parse("input.xsl")
 transform = ET.XSLT(xslt)
 newdom = transform(dom)
 print(ET.tostring(newdom, pretty_print=True).decode('utf-8'))
 {{< /highlight >}}
 
-But we decided to use java and not python. This solution is really the last resort. We searched again for a solution in java.
+This program did the transformation correctly. So I was sure now that the xslt and the input data is correct. The problem is in the java code.
 ### The solution
-What could be the solution to my problem? We searched that day. It was Friday evening, no solution. With no solution going in the weekend gave me not a sattisfiing feeling. 
-After the weekend, I had a message in our team chat. One of the developers had found a solution in the weekend. I tried it with all my input data. And indeed, it worked.
+What could be the solution to this transformation problem? We searched that day. It was Friday evening and we did not find any solution. Having a weekend with no real solution. That is not satisfiing. After the weekend, I had a message in our team chat. One of the developers had found a solution in the weekend. I tried it with all my input data. And indeed, it worked.
 
 The solution is very simple. Do not parse the xml into a Document, but keep it in a StreamSource. 
 
@@ -99,6 +135,16 @@ public void run() throws Exception {
     transformer.transform(xmlSource, result);
 }
 {{< /highlight >}}
+
+{{< highlight xml >}}
+<?xml version="1.0" encoding="UTF-8"?>
+<person:createResponse xmlns:person="services.person">
+    <person:firstName>BABY</person:firstName>
+    <person:familyName>GHOST</person:familyName>
+</person:createResponse>
+{{< /highlight >}}
+
+Now we can test our xslt transformations with our test framework.
 
 ### What did I learn ?
 
