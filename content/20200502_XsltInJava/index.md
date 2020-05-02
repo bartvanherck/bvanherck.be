@@ -1,9 +1,9 @@
 ---
 title: "xslt transformations in Java"
-date: 2020-04-26T18:00:00+01:00
-publishdate: 2020-04-27T17:00:00+01:00
+date: 2020-05-02T10:00:00+01:00
+publishdate: 2020-05-02T10:00:00+01:00
 tags: ["testing", "java"]
-summary: How should we test xslt transformations in java? Is the solution that we found on the most examples located on the internet suitable for us? In our case we still had problems that our tests where failing. The solution was correct. This means we need another approach.
+summary: How should we test xslt transformations in java? Is the solution that we found on the most examples located on the internet suitable for us? In our case we still had problems that our tests where failing. The solution is not correct. This means we need another approach.
 comments: false
 ---
 ### I have a problem
