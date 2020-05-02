@@ -7,7 +7,7 @@ summaryLength = 50
 
 [Menus]
   main = [
-      {Name = "Blog", URL = "/blog"}
+#      {Name = "Blog", URL = "/blog"}
   ]
 
 [params]
