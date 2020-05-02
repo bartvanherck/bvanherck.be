@@ -1,11 +1,11 @@
 ---
 title: "Testing Code of Ethics"
-date: 2020-04-26T18:00:00+01:00
-publishdate: 2020-04-28T17:00:00+01:00
+date: 2020-05-02T12:00:00+01:00
+publishdate: 2020-05-02T14:00:00+01:00
 tags: ["testing"]
 summary: Artificial Intelligence looks the solution to many problems. Chatbots for example are reacting like real people with the help of Artificial Intelligence. Artificial Intelligence is also used in some fields that are not that ethical. 
 comments: false
-draft: true
+draft: false
 ---
 Artificial Intelligence looks the solution to many problems. Chatbots for example are reacting like real people with the help of Artificial Intelligence. At this moment the chatbots are already very advanced. You can not tell anymore if you are chatting with a bot or a real person. There can raise some problems though. Some dating sites are using chatbots. The bots try to convince the mostly male people to have a paying subscription on the site. Many people believe that they are talking to a real person. In reality it is notthing but software. This looks a little scaring and not very ethical. 
 
