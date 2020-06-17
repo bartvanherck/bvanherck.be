@@ -11,7 +11,7 @@ summaryLength = 50
   ]
 
 [params]
-  description = "Mijn custom description"
+  description = ""
   include_toc = true
   subtitleLength = 25
   logo = "/images/logo.png"
